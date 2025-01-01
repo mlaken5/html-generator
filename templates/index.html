@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Files</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Upload Files</h1>
+        <p>Accepted file types: MP4, JPEG, PNG, GIF</p>
+        <form id="uploadForm" method="POST" enctype="multipart/form-data">
+            <input type="file" name="files" multiple accept=".mp4,.jpg,.jpeg,.png,.gif">
+            <button type="submit">Upload and Process</button>
+        </form>
+        <div id="progressBarContainer">
+            <div id="progressBar"></div>
+        </div>
+    </div>
+    <footer>
+        By The Gadget Aid LLC
+    </footer>
+    <script>
+        document.getElementById("uploadForm").addEventListener("submit", function (event) {
+            // Show the progress bar
+            document.getElementById("progressBarContainer").style.display = "block";
+            document.getElementById("progressBar").style.width = "0%";
+
+            // Simulate progress (for demonstration purposes)
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 10;
+                document.getElementById("progressBar").style.width = progress + "%";
+                if (progress >= 100) {
+                    clearInterval(interval);
+                }
+            }, 300);
+        });
+    </script>
+</body>
+</html>
